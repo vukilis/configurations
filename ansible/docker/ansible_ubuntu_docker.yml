@@ -52,8 +52,11 @@
         echo $docker_compose_ver_check is installed
       
     - name: test
-      ansible.builtin.debug:
-        msg: $(docker-compose --version)
+      shell: check=$(docker-compose --version) && echo $check
+      register: check
+    - name: Print uptime of managed node
+      debug:
+        msg: "{{ check }}"
 
     # Create Portainer Volume
     # --
