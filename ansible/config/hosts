@@ -4,5 +4,8 @@
 [maven]
 192.168.0.193 ansible_ssh_pass=ubuntu ansible_ssh_user=ubuntu
 
+[servers]
+192.168.0.193 ansible_ssh_pass=ubuntu ansible_ssh_user=ubuntu
+
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

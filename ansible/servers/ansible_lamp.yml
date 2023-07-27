@@ -1,0 +1,40 @@
+---
+
+- hosts: '{{ hosts }}'
+  become: true
+
+  tasks:
+    - debug:
+        msg: "Runing in servers host"
+
+    - name: package update
+      ansible.builtin.package:
+        update_cache: true
+
+    - name: Installing Apache, MySQL and PHP
+      ansible.builtin.package:
+        name:
+          - apache2
+          - mysql-server
+          - mysql-client
+          - php
+          - php-mysql
+        state: latest
+        update_cache: true
+
+    - name: Enabling and Starting the service apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    
+    - name: Enabling and Starting the service mysql
+      service: 
+        name: mysql
+        state: started
+        enabled: yes
+      
+    - name: Deploy index.html
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
