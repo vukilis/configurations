@@ -1,0 +1,37 @@
+Vagrant.configure("2") do |config|
+    # https://docs.vagrantup.com.
+    # boxes at https://vagrantcloud.com/search.
+    config.vm.box = "bento/ubuntu-22.04"
+    # config.vm.box_url = ""
+
+    config.vm.network "public_network"
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+
+    config.vm.synced_folder "shadowbg/", "/app/shadowbg"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.gui = true 
+        vb.name = "vagrant_Docker_app"
+        vb.memory = "2048"
+        vb.cpus = 2
+        vb.check_guest_additions = false
+    end
+
+    config.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y ca-certificates curl gnupg
+        install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        chmod a+r /etc/apt/keyrings/docker.gpg
+        echo \
+        "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+        tee /etc/apt/sources.list.d/docker.list > /dev/null
+        apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+        # docker_compose_ver_check=$(git ls-remote https://github.com/docker/compose | grep refs/tags | grep -oE "(v?)[0-9]+\.[0-9][0-9]+\.[0-9]+$" | sort --version-sort | tail -n 1); echo $docker_compose_ver_check is latest version; sudo curl -SL https://github.com/docker/compose/releases/download/$docker_compose_ver_check/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose; sudo chmod +x /usr/local/bin/docker-compose; echo $docker_compose_ver_check is installed
+        cd /app/shadowbg
+        docker compose -f docker-compose-prod.yml up -d
+    SHELL
+end
