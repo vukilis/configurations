@@ -58,16 +58,10 @@
       debug:
         msg: "{{ check }}"
 
-    # Create Portainer Volume
-    # --
-    # 
-    - name: Create new Volume
+    - name: Create Portainer Volume
       community.docker.docker_volume:
         name: portainer-data
-    
-    # Deploy Portainer
-    # --
-    #   
+      
     - name: Deploy Portainer
       community.docker.docker_container:
         name: portainer
