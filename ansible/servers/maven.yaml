@@ -1,0 +1,19 @@
+---
+
+- hosts: '{{ hosts }}'
+  become: true
+
+  tasks:
+    - debug:
+        msg: "Runing in maven host"
+
+    - name: package update
+      ansible.builtin.package:
+        update_cache: true
+
+    - name: Installing Maven
+      ansible.builtin.package:
+        name:
+          - maven
+        state: latest
+        update_cache: true
