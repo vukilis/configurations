@@ -10,8 +10,8 @@ services:
       - ./images:/app/public/images
       - ./icons:/app/public/icons
     environment:
-      # PUID: 1000
-      # PGID: 1000
+      - PUID=1000
+      - PGID=1000
       - LOG_LEVEL=debug
       - HOMEPAGE_VAR_PROXMOX_USERNAME=${HOMEPAGE_VAR_PROXMOX_USERNAME}
       - HOMEPAGE_VAR_PROXMOX_PASSWORD=${HOMEPAGE_VAR_PROXMOX_PASSWORD}
