@@ -1,0 +1,102 @@
+---
+- Networking:
+    - Archer C6:
+        href: http://192.168.0.1
+        icon: avmfritzbox.png
+        description: Home Router
+        siteMonitor: http://192.168.0.1
+    - Huawei:
+        href: http://192.168.100.1/
+        icon: avmfritzbox.png
+        description: ISP Router
+        siteMonitor: http://192.168.100.1/
+
+- Infrastructure and Data:
+    - Proxmox:
+        href: https://192.168.0.90:8006
+        icon: proxmox.png
+        description: prx-prod
+        siteMonitor: https://192.168.0.90:8006
+        widget:
+            type: proxmox
+            url: https://192.168.0.90:8006
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+        
+- Management:
+    - Portainer:
+        href: http://192.168.0.156:9000
+        icon: portainer.png
+        description: portainer
+        server: localdocker-proxy
+        container: portainer
+        widget:
+            type: portainer
+            url: http://192.168.0.156:9000
+            env: 2
+            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
+        
+- Monitoring:
+    - UptimeKuma:
+        href: http://192.168.0.200
+        description: uptimekuma
+        icon: uptime-kuma.png
+        widget:
+            type: uptimekuma
+            url: http://192.168.0.200
+            slug: publicservices
+    - Prometheus:
+        href: http://192.168.0.201
+        description: prometheus
+        icon: prometheus.png
+        server: srv-prod-1
+        container: prometheus-prod-1
+        widget:
+            type: prometheus
+            url: http://192.168.0.201
+    - Grafana:
+        href: http://192.168.0.202
+        description: grafana
+        icon: grafana.png
+        server: srv-prod-1
+        container: grafana-prod-1
+
+- Security and Identity:
+    - Authentik:
+        href: http://192.168.0.203
+        description: authentik
+        icon: authentik.png
+        widget:
+            type: authentik
+            url: http://192.168.0.203
+            key: {{HOMEPAGE_VAR_AUTHENTIK_KEY}}
+    - Passbolt:
+        href: http://192.168.0.203
+        description: passbolt
+        icon: passbolt.png
+
+- Automation:
+    - Kestra:
+        href: http://192.168.0.204
+        description: kestra
+        icon: https://kestra-io.gallerycdn.vsassets.io/extensions/kestra-io/kestra/0.0.1/1692285562923/Microsoft.VisualStudio.Services.Icons.Default
+
+    - Ansible Semaphore:
+        href: http://192.168.0.205
+        description: ansiblesemaphore
+        icon: si-ansible-#EE0000
+    - ArgoCD:
+        href: http://192.168.0.206
+        description: argocd
+        icon: si-argo-#EF7B4D
+
+- IoT and Smarthome:
+    - Home Assistant:
+        href: http://192.168.0.207
+        icon: home-assistant.png
+        description: homeassistant
+        widget:
+            type: homeassistant
+            url: http://192.168.0.207
+            key: {{HOMEPAGE_VAR_HOMEASSISTANT_KEY}}
+            custom:

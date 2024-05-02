@@ -1,0 +1,47 @@
+---
+title: World Of Vukilis 
+startUrl: http://vukilis.url
+headerStyle: boxed
+hideVersion: true
+
+background: 
+  image:  https://r4.wallpaperflare.com/wallpaper/16/879/786/abstract-simple-background-simple-digital-art-wallpaper-59d0c8ed918a9d3b96d7784fe061e66d.jpg
+  blur: xl
+  brightness: 90
+  opacity: 60
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
+
+cardBlur: sm
+
+favicon: https://raw.githubusercontent.com/vukilis/website/main/static/images/favicon.png
+theme: dark
+color: slate
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+layout:
+  Networking:
+    icon: mdi-network-#FFFFFF
+  Infrastructure and Data:
+    icon: mdi-server-#FFFFFF
+  Management:
+    icon: mdi-auto-fix-#FFFFFF
+  Monitoring:
+    icon: mdi-list-status-#FFFFFF
+  Automation:
+    icon: mdi-cog-play-#FFFFFF
+  IoT and Smarthome:
+    icon: mdi-home-#FFFFFF
+  Security and Identity:
+    icon: mdi-shield-lock-#FFFFFF
+
+showStats: true
+statusStyle: "dot"
+instanceName: public
